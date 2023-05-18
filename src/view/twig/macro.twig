@@ -4,7 +4,7 @@
   <div class="menu_wrap">
     <ul class="menuGlobal">
       {% for title, link in menu.menuLink %}
-        <li class="menuGlobal__item"><a class="menuGlobal__link" href='{{link}}'>{{ title }}</a></li>
+        <li class="menuGlobal__item"><a class="menuGlobal__link" href='{{ link }}'>{{ title }}</a></li>
       {% endfor %}
     </ul>
     <div class="menu_click">
@@ -12,61 +12,69 @@
     </div>
   </div>
   <script>
-    const globalMenu = document.querySelector('.menu_click');
-    const menuWrap = document.querySelector('.menu_wrap');
+    const globalMenu = document.querySelector(".menu_click");
+    const menuWrap = document.querySelector(".menu_wrap");
 
     // Add active class for link
-    menuWrap.querySelectorAll('.menuGlobal__link').forEach(link => {
-      if (link.pathname === window.location.pathname) link.classList.add('active');
-      else if (window.location.pathname === '/' && link.pathname === '/index.html') link.classList.add('active');
-    })
+    menuWrap.querySelectorAll(".menuGlobal__link").forEach(link => {
+      if (link.pathname === window.location.pathname) link.classList.add("active");
+      else if (window.location.pathname === "/" && link.pathname === "/index.html") link.classList.add("active");
+    });
 
     // Add menu toggler
-    globalMenu && globalMenu.addEventListener('click', () => menuWrap.classList.toggle('menu_wrap_active'))
+    globalMenu && globalMenu.addEventListener("click", () => menuWrap.classList.toggle("menu_wrap_active"));
 
     // Close menu on window click
-    document.addEventListener('click', event => {
+    document.addEventListener("click", event => {
       let targetEl = event.target;
       do {
         if (targetEl === menuWrap) return;
         targetEl = targetEl.parentNode;
       } while (targetEl);
-      menuWrap.classList.remove('menu_wrap_active')
+      menuWrap.classList.remove("menu_wrap_active");
     });
   </script>
 
   <style lang='scss'>
-  {% include "../../assets/menuGlobal.scss" %}
+    {% include "../../assets/menuGlobal.scss" %}
   </style>
 {% endmacro %}
 {# Development pages menu end #}
 
+{# Logo #}
+{% macro logo() %}
+  <a href="/">
+    <img src="img/content/logo.png" alt="Logo">
+  </a>
+{% endmacro %}
+{# Logo end #}
+
 {# Icons #}
 {% macro icon(name, mod) %}
-  <svg class="icon icon-{{name}} {{mod}}">
-    <use href="icon/icons/icons.svg#{{name}}" />
+  <svg class="icon icon-{{ name }} {{ mod }}">
+    <use href="icon/icons/icons.svg#{{ name }}" />
   </svg>
 {% endmacro %}
 {# Icons end #}
 
 {# Images #}
 {% macro img(link, format, parent) %}
-  <picture class='{{parent}}__image'>
-    <source srcset='img/{{link}}.webp', type='image/webp' class="{{parent}}__img" >
-    <img src='img/{{link}}.{{format}}', alt='img' class="{{parent}}__img" >
+  <picture class='{{ parent }}__image'>
+    <source srcset='img/{{ link }}.webp' , type='image/webp' class="{{ parent }}__img">
+    <img src='img/{{ link }}.{{ format }}' , alt='img' class="{{ parent }}__img">
   </picture>
 {% endmacro %}
 {# Images end #}
 
 {# Breadcrumbs #}
 {% macro breadcrumbs(items, customClass) %}
-  <div class="breadcrumbs {{customClass}}">
+  <div class="breadcrumbs {{ customClass }}">
     <ul class="breadcrumbs__list">
-    {% for item in items %}
-      <li class="breadcrumbs__item">
-        <a href="{{item.href}}" class="breadcrumbs__link">{{item.title}}</a>
-      </li>
-    {% endfor %}
+      {% for item in items %}
+        <li class="breadcrumbs__item">
+          <a href="{{ item.href }}" class="breadcrumbs__link">{{ item.title }}</a>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 {% endmacro %}

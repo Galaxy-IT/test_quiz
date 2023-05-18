@@ -1,15 +1,14 @@
 const path = require('path');
 
-module.exports = () => $.gulp.task('twig', twig ? twig_template : () => {
-});
+module.exports = () => $.gulp.task('twig', twig ? twig_template : () => {});
 
 function twig_template() {
-  const throwCurrentPage = ({path: filePath}) => {
+  const throwCurrentPage = ({ path: filePath }) => {
     const fileBaseName = path.basename(filePath);
     const extNameRegExp = new RegExp(path.extname(filePath));
     const currentPage = fileBaseName.replace(extNameRegExp, '');
 
-    return {currentPage};
+    return { currentPage };
   };
 
   const functions = [
@@ -22,7 +21,7 @@ function twig_template() {
     {
       name: 'auto',
       func: function (fileName) {
-        return require(path.join(__dirname, `../../src/auto/${fileName}.json`));
+        return require(path.join(__dirname, '..', '..', 'src', 'auto', `${fileName}.json`));
       }
     },
     {
@@ -42,6 +41,12 @@ function twig_template() {
 
         return string.replace(newRegExp, newValue);
       }
+    },
+    {
+      name: 'join',
+      func: function (arr, sep = '') {
+        return arr.join(sep);
+      }
     }
   ];
 
@@ -49,7 +54,7 @@ function twig_template() {
     .src(['./src/view/twig/home/*.twig', './src/view/twig/pages/*.twig', './src/view/twig/errors/*.twig'])
     .pipe(ifenv($.gp.plumber(), 'development'))
     .pipe($.gp.data(throwCurrentPage))
-    .pipe($.gp.twig({functions, data: {prod, webpack}}))
+    .pipe($.gp.twig({ functions, data: { prod, webpack } }))
     .on(
       'error',
       $.gp.notify.onError((error) => {
@@ -59,7 +64,7 @@ function twig_template() {
         };
       })
     )
-    .pipe(ifenv($.gp.htmlmin({collapseWhitespace: true})))
+    .pipe(ifenv($.gp.htmlmin({ collapseWhitespace: true })))
     .pipe($.gulp.dest('./build/'))
     .pipe(
       ifenv(

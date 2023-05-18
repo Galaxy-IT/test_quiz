@@ -2,10 +2,34 @@
 {% block variables %}
   {% set title = 'Index page' %}
   {% set pageClass = 'index-page' %}
+  {#  {% set steps = [1,2] %} #}
 {% endblock %}
 
 {% block content %}
-  <p>
-    {{ test }}
-  </p>
+  <form action="#" method="POST" class="stepper">
+    <div class="stepper__head">
+      <div class="stepper__head-row">
+        <div class="stepper__head-col">
+          {{ macro.icon('arrow-left') }}
+        </div>
+        <div class="stepper__head-col">
+          {{ macro.logo() }}
+        </div>
+        <div class="stepper__head-col">
+          <div class="counter">
+            <span class="counter__current"></span>
+            <span class="counter__sep">/</span>
+            <span class="counter__total"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stepper__body">
+      {% include 'stepper/intro.twig' %}
+    </div>
+  </form>
+  {#  {% for step in steps %} #}
+  {#    {% set stepHref = join(['stepper/step-', step, '.twig']) %} #}
+  {#    {% include stepHref %} #}
+  {#  {% endfor %} #}
 {% endblock %}

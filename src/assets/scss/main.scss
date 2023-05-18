@@ -13,6 +13,11 @@
 // Settings
 @import "settings";
 
-// Modules & Components styles
-@import "modules";
-@import "components";
+// Components
+@import "components/main";
+
+// Modules
+@import "modules/main";
+
+// Views
+@import "views/main";
