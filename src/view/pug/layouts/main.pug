@@ -1,0 +1,48 @@
+include ../mixins
+block variables
+
+doctype html
+html(lang="en-GB")
+  head
+    meta(charset="UTF-8")
+    title= title
+    <!--[if IE]>
+    meta(http-equiv='X-UA-Compatible', content="IE = edge")
+    <![endif]-->
+    meta(name='viewport' content='width=device-width,initial-scale=1,shrink-to-fit=no')
+    meta(content='true' name='HandheldFriendly')
+    meta(content='width' name='MobileOptimized')
+    meta(content='yes' name='apple-mobile-web-app-capable')
+    meta(name="keywords" content= title)
+    meta(name="description" content= title)
+    <!-- inject:font preload --><!-- endinject -->
+    meta(name='it-rating', content='it-rat-fa9ef9f8c2095cc94c5d33de60ee9bb3')
+    <!-- inject:critical --><!-- endinject -->
+    // pwa config tags
+    if (tailwind)
+      link(rel="preload" type='text/css' href="css/tailwind.min.css" as="style")
+    // CSS
+      // - $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', 'your stylesheet url')); // TODO check
+    link(rel='preload' href='css/app.min.css' as='style' onload="this.rel='stylesheet'")
+    //link(rel="preload stylesheet" type='text/css' href="css/app.min.css" as="style")
+    // IE Support
+    <!--[if lt IE 9]>
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js")
+    <![endif]-->
+
+  body(class=pageClass)
+    .wrapper
+      include ./includes/header
+      .content
+        block content
+      include ./includes/footer
+
+      //- include cookies-prmitions
+
+    if (!prod && !rmDevMenu)
+      +menuDev
+    //- script(src="js/app.min.js")
+    if(!webpack)
+      script(src="js/app.min.js")
+      script(src="js/main.min.js")
+    block script

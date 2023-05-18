@@ -1,0 +1,206 @@
+
+<!-- GLOBAL MENU ===================================================-->
+<!-- END GLOBAL MENU ===================================================-->
+<!-- Svg icon -->
+<!-- Image -->
+<!-- Breadcrumbs - "items" has to be array--><!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8">
+    <title>Modules preview page</title><!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE = edge"><![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta content="true" name="HandheldFriendly">
+    <meta content="width" name="MobileOptimized">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="keywords" content="Modules preview page">
+    <meta name="description" content="Modules preview page"><!-- inject:font preload --><!-- endinject -->
+    <meta name="it-rating" content="it-rat-fa9ef9f8c2095cc94c5d33de60ee9bb3"><!-- inject:critical --><!-- endinject -->
+    <!-- pwa config tags-->
+    <!-- CSS// - $('head').append($('<link rel="stylesheet" type="text/css" />').attr('href', 'your stylesheet url')); // TODO check
+    -->
+    <link rel="preload" href="css/app.min.css" as="style" onload="this.rel='stylesheet'">
+    <!--link(rel="preload stylesheet" type='text/css' href="css/app.min.css" as="style")-->
+    <!-- IE Support--><!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script><![endif]-->
+  </head>
+  <body class="modules-preview">
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__wrap">
+          <div class="container">
+            <div class="header">
+              <div class="header__menu">
+                <!-- GLOBAL MENU ===================================================-->
+                <!-- END GLOBAL MENU ===================================================-->
+                <!-- Svg icon -->
+                <!-- Image -->
+                <!-- Breadcrumbs - "items" has to be array-->
+                <ul class="nav">
+                  <li class="nav__item"><a class="nav__link" href="index.html">Home Page</a></li>
+                  <li class="nav__item"><a class="nav__link" href="about.html">About</a></li>
+                  <li class="nav__item"><a class="nav__link" href="catalog.html">Catalog</a></li>
+                  <li class="nav__item"><a class="nav__link" href="contacts.html">Contacts</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="some-font">test</div>
+      <div class="content">
+        <div class="container">
+          <h2 style="text-align: center; margin-bottom: 20px;">Modal trigger</h2>
+          <div class="modal-trigger-wrap" style="display: flex; justify-content: center; margin-bottom: 50px;">
+            <button class="modal-trigger" data-modal-target="modal">Open modal</button>
+          </div>
+          <h2 style="text-align: center; margin-bottom: 20px;">Form</h2>
+          <div class="tabs-wrap" style="display: flex; width: 100%; margin-inline: auto; width: 1000px; justify-content: center; margin-bottom: 50px; gap: 10px;">
+            <!-- GLOBAL MENU ===================================================-->
+            <!-- END GLOBAL MENU ===================================================-->
+            <!-- Svg icon -->
+            <!-- Image -->
+            <!-- Breadcrumbs - "items" has to be array-->
+            <form class="form" data-form-validation>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">First name</div>
+                    <input class="form__input" type="text" name="user_firstname" data-required data-validation-type="name"><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Last name</div>
+                    <input class="form__input" type="text" name="user_lastname" data-required data-validation-type="name"><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Min count </div>
+                    <input class="form__input" type="number" min="10" max="100" name="user_minprice" data-required data-validation-type="number"><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Max count</div>
+                    <input class="form__input" type="number" min="100" max="1000" name="user_maxprice" data-required data-validation-type="number"><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Choose a date of start(flatpickr)</div>
+                    <input class="form__input" type="date" name="user_start" data-required data-validation-type="empty" data-flatpickr><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Choose a date of end(no flatpickr)</div>
+                    <input class="form__input" type="date" name="user_end" data-required data-validation-type="empty"><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Mail</div>
+                    <input class="form__input" type="email" novalidate formnovalidate="formnovalidate" name="user_email" data-required data-validation-type="email"><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Phone(regular expression)</div>
+                    <input class="form__input" type="tel" name="user_phone" minlength="5" maxlength="20" data-required data-validation-type="tel"><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Phone second(IMask)</div>
+                    <input class="form__input" type="tel" name="user_secondphone" data-required data-validation-type="empty" data-imask><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Select your city</div>
+                    <select class="form__input" name="user_city" data-required data-validation-type="empty">
+                      <option value="city_1">City 1</option>
+                      <option value="city_2">City 2</option>
+                      <option value="city_3">City 3</option>
+                    </select><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field form__field--radio" data-validation-status>
+                    <div class="form__name">Choose tariff</div>
+                    <div class="form__field-radio-group" data-required data-validation-type="radio-group">
+                      <input class="form__input" type="radio" name="user_tarif" value="tairf_1" data-validation-type="radio">
+                      <input class="form__input" type="radio" name="user_tarif" value="tairf_2" data-validation-type="radio">
+                      <input class="form__input" type="radio" name="user_tarif" value="tairf_3" data-validation-type="radio">
+                      <input class="form__input" type="radio" name="user_tarif" value="tairf_4" data-validation-type="radio">
+                      <input class="form__input" type="radio" name="user_tarif" value="tairf_5" data-validation-type="radio">
+                    </div><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field form__field--radio" data-validation-status>
+                    <div class="form__name">Choose discount</div>
+                    <div class="form__field-radio-group" data-required data-validation-type="radio-group">
+                      <input class="form__input" type="radio" name="user_discount" value="discount_1" data-validation-type="radio">
+                      <input class="form__input" type="radio" name="user_discount" value="discount_2" data-validation-type="radio">
+                      <input class="form__input" type="radio" name="user_discount" value="discount_3" data-validation-type="radio">
+                      <input class="form__input" type="radio" name="user_discount" value="discount_4" data-validation-type="radio">
+                      <input class="form__input" type="radio" name="user_discount" value="discount_5" data-validation-type="radio">
+                    </div><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <div class="form__field" data-validation-status>
+                    <div class="form__name">Upload you photo</div>
+                    <input class="form__input" type="file" name="user_userphoto" data-required data-validation-type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"><span class="form__invalid-message">Invalid message</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <label class="form__field form__field--checkbox" data-validation-status>
+                    <input class="form__input" type="checkbox" name="user_confirm" data-required data-validation-type="checkbox">
+                    <div class="form__name">Confirm privacy </div><span class="form__invalid-message">Invalid message</span>
+                  </label>
+                </div>
+              </div>
+              <div class="form__row">
+                <div class="form__col">
+                  <button class="form__submit" type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--h2(style="text-align: center; margin-bottom: 20px;") Clickable rating-->
+          <!--.rating-wrap(style="display: flex; justify-content: center; margin-bottom: 50px;")-->
+          <!--  include ./modules-preview/rating-->
+        </div>
+      </div>
+      <footer class="footer footer__wrap">
+        <div class="container">
+          <div class="text-sm">some text</div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/app.min.js"></script>
+    <script src="js/main.min.js"></script>
+  </body>
+</html>

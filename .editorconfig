@@ -1,0 +1,51 @@
+# https://editorconfig.org
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+# TS/JS-Files
+[*.{ts, js}]
+indent_size = 2
+
+[*.{yml, yaml}]
+indent_size = 2
+
+# PUG/HTML
+[*.{pug, html, htm}]
+indent_size = 2
+
+[*.{css, scss, sass, styl, stylus, less}]
+indent_size = 2
+
+# package.json
+[*.{json, xml}]
+indent_size = 2
+
+[*.vue]
+indent_size = 2
+
+[*.php]
+indent_size = 4
+
+[*.{typoscript, tsconfig}]
+indent_size = 2
+
+# SQL-Files
+[*.sql]
+indent_style = tab
+indent_size = 2
+
+# .htaccess
+[{_.htaccess, .htaccess}]
+indent_style = tab

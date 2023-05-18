@@ -1,0 +1,99 @@
+include ../../mixins
+
+form.form(data-form-validation)
+  .form__row
+    .form__col
+      .form__field(data-validation-status)
+        .form__name First name
+        input.form__input(type='text' name='user_firstname' data-required data-validation-type='name')
+        span.form__invalid-message Invalid message
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Last name
+        input.form__input(type='text' name='user_lastname' data-required data-validation-type='name')
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Min count 
+        input.form__input(type='number' min='10' max='100' name='user_minprice' data-required data-validation-type='number')
+        span.form__invalid-message Invalid message
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Max count
+        input.form__input(type='number' min='100' max='1000' name='user_maxprice' data-required data-validation-type='number')
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Choose a date of start(flatpickr)
+        input.form__input(type='date' name='user_start' data-required data-validation-type='empty' data-flatpickr)
+        span.form__invalid-message Invalid message
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Choose a date of end(no flatpickr)
+        input.form__input(type='date' name='user_end' data-required data-validation-type='empty')
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Mail
+        input.form__input(type='email' novalidate formnovalidate="formnovalidate" name='user_email' data-required data-validation-type='email')
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Phone(regular expression)
+        input.form__input(type='tel' name='user_phone' minlength='5' maxlength='20' data-required data-validation-type='tel')
+        span.form__invalid-message Invalid message
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Phone second(IMask)
+        input.form__input(type='tel' name='user_secondphone' data-required data-validation-type='empty' data-imask)
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Select your city
+        select.form__input(name='user_city' data-required data-validation-type='empty')
+          option(value="city_1") City 1
+          option(value="city_2") City 2
+          option(value="city_3") City 3
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      .form__field.form__field--radio(data-validation-status)
+        .form__name Choose tariff
+        .form__field-radio-group(data-required data-validation-type='radio-group')
+          input.form__input(type='radio' name='user_tarif' value='tairf_1' data-validation-type='radio')
+          input.form__input(type='radio' name='user_tarif' value='tairf_2' data-validation-type='radio')
+          input.form__input(type='radio' name='user_tarif' value='tairf_3' data-validation-type='radio')
+          input.form__input(type='radio' name='user_tarif' value='tairf_4' data-validation-type='radio')
+          input.form__input(type='radio' name='user_tarif' value='tairf_5' data-validation-type='radio')
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      .form__field.form__field--radio(data-validation-status)
+        .form__name Choose discount
+        .form__field-radio-group(data-required data-validation-type='radio-group')
+          input.form__input(type='radio' name='user_discount' value='discount_1' data-validation-type='radio')
+          input.form__input(type='radio' name='user_discount' value='discount_2' data-validation-type='radio')
+          input.form__input(type='radio' name='user_discount' value='discount_3' data-validation-type='radio')
+          input.form__input(type='radio' name='user_discount' value='discount_4' data-validation-type='radio')
+          input.form__input(type='radio' name='user_discount' value='discount_5' data-validation-type='radio')
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      .form__field(data-validation-status)
+        .form__name Upload you photo
+        input.form__input(type='file' name='user_userphoto' data-required data-validation-type='file' accept=".pdf,.jpg,.jpeg,.png,.doc,.docx")
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      label.form__field.form__field--checkbox(data-validation-status)
+        input.form__input(type='checkbox' name='user_confirm' data-required data-validation-type='checkbox')
+        .form__name Confirm privacy 
+        span.form__invalid-message Invalid message
+  .form__row
+    .form__col
+      button.form__submit(type="submit") Submit

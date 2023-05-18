@@ -1,0 +1,73 @@
+@mixin font($font_name, $file_name, $weight, $style) {
+  @font-face {
+    font-family: $font_name;
+    font-display: swap;
+    src: url("../fonts/#{$file_name}.eot") format("eot");
+    src: url("../fonts/#{$file_name}.woff") format("woff"),
+    url("../fonts/#{$file_name}.woff2") format("woff2"),
+    url("../fonts/#{$file_name}.svg") format("svg"),
+    url("../fonts/#{$file_name}.ttf") format("ttf");
+    font-weight: #{$weight};
+    font-style: #{$style};
+  }
+}
+
+@mixin inherit {
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  color: inherit;
+}
+
+@mixin customScrollbar($width: initial ,$track-bg: initial, $thumb-bg: initial, $radius: 0) {
+  scrollbar-gutter: stable;
+  &::-webkit-scrollbar {
+    width: #{$width}px;
+    height: #{$width}px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-bg;
+    border-radius: #{$radius}px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-bg;
+    border-radius: #{$radius}px;
+  }
+}
+
+@mixin media-down($value) {
+  @media screen and (max-width: $value + 'px') {
+    @content;
+  }
+}
+
+@mixin media-up($value) {
+  @media screen and (min-width: $value + 'px') {
+    @content;
+  }
+}
+
+@mixin media-between($value1, $value2) {
+  @media screen and (min-width: $value1 + 'px') and (max-width: $value2 + 'px') {
+    @content;
+  }
+}
+
+@mixin lineClamp($columns) {
+  -webkit-line-clamp: $columns;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin listColumns($columns) {
+  columns: $columns;
+  -webkit-columns: $columns;
+  -moz-columns: $columns;
+}

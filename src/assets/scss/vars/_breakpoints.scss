@@ -1,0 +1,63 @@
+// Breakpoint media
+$xxs-and-sm: 320px;
+$xs-and-sm: 576px;
+$sm-and-sm: 768px;
+$md-and-sm: 992px;
+$lg-and-sm: 1200px;
+$xl-and-sm: 1400px;
+$xxl-and-sm: 1920px;
+$uhd-and-sm: 1921px;
+
+@mixin xxs {
+  @media (max-width: #{$xxs-and-sm}) {
+    @content;
+  }
+}
+
+@mixin xs {
+  @media (max-width: #{$xs-and-sm}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: #{$sm-and-sm}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: #{$md-and-sm}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: #{$lg-and-sm}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: #{$xl-and-sm}) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (max-width: #{$xxl-and-sm}) {
+    @content;
+  }
+}
+
+@mixin uhd {
+  @media (min-width: #{$uhd-and-sm}) {
+    @content;
+  }
+}
+
+@mixin u_wide {
+  @media (min-width: #{$uhd-and-sm}) and (min-aspect-ratio: 21/9) {
+    @content;
+  }
+}

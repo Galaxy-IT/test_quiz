@@ -1,0 +1,43 @@
+.header {
+  width: 100%;
+  height: px(70);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  background-color: aquamarine;
+
+  @include uhd {
+    height: px(70, false);
+  }
+  @include u_wide {
+    height: px(150, false);
+  }
+  @include xl {
+    height: px(65);
+  }
+  @include lg {
+    height: px(60);
+  }
+  @include md {
+    height: pxm(70);
+  }
+  @include sm {
+    height: pxm(70);
+  }
+  @include xs {
+    height: pxs(70);
+  }
+  @include xxs {
+    height: pxs(70);
+  }
+
+  &__menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.some-font {
+  font-size: 1.25em / 2;
+}

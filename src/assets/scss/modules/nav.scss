@@ -1,0 +1,15 @@
+.nav {
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    margin-left: px(15);
+  }
+
+  &__link {
+    &.active {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+extends ../layouts/main
+
+block variables
+  - var title = 'Modules preview page'
+  - var pageClass = 'modules-preview'
+
+block content
+  .container
+    h2(style="text-align: center; margin-bottom: 20px;") Modal trigger
+    .modal-trigger-wrap(style="display: flex; justify-content: center; margin-bottom: 50px;")
+      button.modal-trigger(data-modal-target='modal') Open modal
+    h2(style="text-align: center; margin-bottom: 20px;") Form
+    .tabs-wrap(style="display: flex; width: 100%; margin-inline: auto; width: 1000px; justify-content: center; margin-bottom: 50px; gap: 10px;")
+      include ./modules-preview/form
+
+    //- h2(style="text-align: center; margin-bottom: 20px;") Tabs
+    //- .tabs-wrap(style="display: flex; justify-content: center; margin-bottom: 50px; gap: 10px;")
+    //-   include ./modules-preview/tabs
+    //-   include ./modules-preview/tabs
+    //- h2(style="text-align: center; margin-bottom: 20px;") Accordion
+    //- .accordion-wrap(style="display: flex; justify-content: center; margin-bottom: 50px;")
+    //-   include ./modules-preview/accordion
+    //h2(style="text-align: center; margin-bottom: 20px;") Clickable rating
+    //.rating-wrap(style="display: flex; justify-content: center; margin-bottom: 50px;")
+    //  include ./modules-preview/rating
+    //- h2(style="text-align: center; margin-bottom: 20px;") Dropdown
+    //- .wrap(style="display: flex; gap: 10px; justify-content: center; margin-bottom: 50px;")
+    //-   include ./modules-preview/dropdown
+    //-   include ./modules-preview/dropdown
+    //-   .dropdown.js-dropdown(data-dropdown='sizes-list')
+    //-     label
+    //-       select(name='' aria-label='Select')
+    //-         option(value='')
+    //-     button.dropdown__toggler.js-dropdown-toggler(type='button' )
+    //-       +icon('arrow-down')
+    //-       span.value s
+    //-       +icon('arrow-down')
+    //-     ul.dropdown__list.active.js-dropdown-list
+    //-       li.dropdown__item
+    //-         button.dropdown__btn(type='button' data-dropdown-value='s') s
+    //-       li.dropdown__item
+    //-         button.dropdown__btn(type='button' data-dropdown-value='m') m
+    //-       li.dropdown__item
+    //-         button.dropdown__btn(type='button' data-dropdown-value='l') l
+
+block script

@@ -1,0 +1,115 @@
+// !IMPORTANT Max breakpoint for VW divider in style size
+$pc: 1920; // width in px layout for PC version on design ||| default 1920
+$tablet: 768; // width in px layout tablet version on design ||| default 768
+$mob: 320; // width in px layout mobile version on design ||| default 320
+$point: 10; // how point after . in style now it's 1 => 0 | 10 => 0.00 | 100 = 0.0000 ||| default 10
+
+/**
+ * Functions for ViewPort Calculating
+============
+  SCSS
+  .selector {
+    font-size: px(18);
+    @include md
+      font-size: pxm(14);
+    @include xs
+      font-size: pxs(12);
+  }
+
+  CSS RESULT
+  .selector {
+    font-size: 18px;
+  }
+  @media (max-width: 768px) {
+    .selector {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 320px) {
+    .selector {
+      font-size: 12px;
+    }
+  }
+============
+*/
+
+
+@function px($size, $ViewPort: $ViewPort) {
+  @if $ViewPort == true {
+    @return decimal-round((($size / $pc) * 100), 2)+vw
+  } @else {
+    @return floor(($size))+px
+  }
+}
+
+@function pxm($size, $ViewPort: $ViewPort) {
+  @if $ViewPort == true {
+    @return decimal-round((($size / $tablet) * 100), 2)+vw
+  } @else {
+    @return floor(($size))+px
+  }
+}
+
+@function pxs($size, $ViewPort: $ViewPort) {
+  @if $ViewPort == true {
+    @return decimal-round((($size / $mob) * 100), 2)+vw
+  } @else {
+    @return floor(($size))+px
+  }
+}
+
+@function decimal-round ($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $mode == round {
+    @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+
+/**
+  function VA => use for calculate letter-spacing from photoshop
+============
+  SCSS
+  .selector {
+    letter-spacing: VA(120, 14);
+  }
+
+  CSS RESULT
+  .selector {
+    letter-spacing: 1.68px;
+  }
+============
+  $unit => VA value in photoshop
+  $font_size => how px font-size in photoshop ||| default 16
+  $return px | em ||| default px
+ */
+@function VA($unit, $font_size: '16', $return: 'px') {
+  @if $return == 'em' {
+    @return unquote(($unit / 1000) + 'em');
+  } @else {
+    @return unquote((($unit * $font_size) / 1000) + 'px');
+  }
+}

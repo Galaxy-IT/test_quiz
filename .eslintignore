@@ -1,0 +1,6 @@
+gulpfile.js
+commitlint.config.js
+postcss.config.js
+./gulp/svgo.config.js
+tailwind.config.js
+webpack.config.js

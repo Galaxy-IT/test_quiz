@@ -1,0 +1,471 @@
+// GLOBAL MENU ===================================================
+mixin menuDev
+  - var menu = json('../auto/menuGlobal')
+
+  .menu_wrap
+    ul.menuGlobal
+      each link, title in menu.menuLink
+        li.menuGlobal__item
+          a(href= link).menuGlobal__link= title
+    .menu_click
+      button ☰
+  script.
+    const globalMenu = document.querySelector('.menu_click');
+    const menuWrap = document.querySelector('.menu_wrap');
+
+    // Add active class for link
+    menuWrap.querySelectorAll('.menuGlobal__link').forEach(link => {
+      if (link.pathname === window.location.pathname) link.classList.add('active');
+      else if (window.location.pathname === '/' && link.pathname === '/index.html') link.classList.add('active');
+    })
+
+    // Add menu toggler
+    globalMenu && globalMenu.addEventListener('click', () => menuWrap.classList.toggle('menu_wrap_active'))
+
+    // Close menu on window click
+    document.addEventListener('click', event => {
+      let targetEl = event.target;
+      do {
+        if (targetEl === menuWrap) return;
+        targetEl = targetEl.parentNode;
+      } while (targetEl);
+      menuWrap.classList.remove('menu_wrap_active')
+    });
+
+  style(lang="scss")
+    include ../../assets/menuGlobal.scss
+// END GLOBAL MENU ===================================================
+
+// Svg icon 
+mixin icon(names, mod)
+  - mod = mod || ''
+  svg(class="icon icon-" + names + ' ' + mod)
+    use(href="icon/icons/icons.svg#" + names)
+
+// Image 
+mixin img(link, format, parent)
+  picture(class="" + parent + "__image")
+    source(srcset='web/img/' + link + '.webp', type='image/webp' class="" + parent + "__img")
+    img(src='web/img/' + link + '.' + format, alt='img' class="" + parent + "__img")
+
+// Breadcrumbs - "items" has to be array
+mixin breadcrumbs(items)
+  .breadcrumbs
+    ul.breadcrumbs__list
+      each val in items
+        li.breadcrumbs__item
+          a.breadcrumbs__link(href='#')=val
+
+
+
+mixin logotype(img)
+  a(href="index.html").logotype
+    img(src="web/img/" + img alt="logo")._img
+
+mixin link_global(href, text, addClass)
+  a(href= href class= addClass).btn_global= text
+
+mixin btn_global(names, text, addClass)
+  button(type="button" name= names class= addClass).btn_global= text
+
+mixin img-media(link, linkMob, format, parent)
+  picture(class="" + parent + "__image")
+    source(srcset='web/img/' + linkMob + '.webp', media='(max-width: 768px)' type='image/webp' class="" + parent + "__img")
+    source(srcset='web/img/' + linkMob + '.' + format, media='(max-width: 768px)' type='image/png' class="" + parent + "__img")
+    source(srcset='web/img/' + link + '.webp', type='image/webp' class="" + parent + "__img")
+    img(src='web/img/' + link + '.' + format, alt='img' class="" + parent + "__img")
+
+mixin btn_slider
+  button(type="button" name="prev").btn_slider.btn_prev
+    +icon('right')
+  button(type="button" name="next").btn_slider.btn_next
+    +icon('right')
+
+mixin social
+  ul.social
+    li._item
+      a(href="#")._link
+        +icon('icon-vk')
+    li._item
+      a(href="#")._link
+        +icon('icon-facebook')
+    li._item
+      a(href="#")._link
+        +icon('icon-telegram')
+    li._item
+      a(href="#")._link
+        +icon('icon-od')
+    li._item
+      a(href="#")._link
+        +icon('icon-twitter')
+    li._item
+      a(href="#")._link
+        +icon('icon-instagram')
+
+mixin burger
+  button(type="button" name="menu").menu
+    svg(viewBox='0 0 64 48')
+      path(d='M19,15 L45,15 C70,15 58,-2 49.0177126,7 L19,37')
+      path(d='M19,24 L45,24 C61.2371586,24 57,49 41,33 L32,24')
+      path(d='M45,33 L19,33 C-8,33 6,-2 22,14 L45,37')
+  script.
+    // TODO Burger
+    $('button.menu').on('click', function(event) {
+      event.preventDefault();
+      $(this).toggleClass('active');
+      // $('.header__menu').toggleClass('menu--active');
+      // $('body').toggleClass('overflow');
+    });
+    $('.wrapper').on('click', function() {
+      $('button.menu').removeClass('active');
+      // $('.header__menu').removeClass('menu--active');
+      // $('body').removeClass('overflow');
+    });
+    // TODO Wrapper click burger disabled
+    $('button.menu, .header__menu').on('click', function(event) {
+      event.stopPropagation();
+    });
+
+mixin counter
+  .counter
+    button(type="button" name="minus")._btn.counter__minus.counter__disabled.text_18
+      span -
+    input(type="number" name="counter" value="1" maxlength="5" min="1" max="99999" autocomplete="off")._input.text_14
+    button(type="button" name="plus")._btn.counter__plus.text_18
+      span +
+  script.
+    // TODO Counter
+    $('.counter__plus').on('click', function(event) {
+      event.preventDefault();
+      let num = parseInt($(this).prev().val());
+      num++;
+      if (num > 99999) {
+        num = 99999;
+      } else {
+        $(this).next().val(num);
+      }
+      $(this).prev().val(num);
+      $(this).parents('.counter').find('.counter__minus').removeClass('counter__disabled');
+    });
+    $('.counter__minus').on('click', function(event) {
+      event.preventDefault();
+      let num = parseInt($(this).next().val());
+      num--;
+      if (num !== 0) {
+        $(this).next().val(num);
+      } else {
+        num = 1;
+      }
+      if (num == 1) {
+        $(this).addClass('counter__disabled');
+      }
+    });
+    $('.counter input').on('keyup', function(event) {
+      let num = $(this).val();
+      if (parseInt($(this).val()) > 9999) {
+        $(this).removeAttr('type');
+      } else {
+        $(this).attr('type', 'number');
+      }
+      if (parseInt($(this).val()) <= 0) {
+        $(this).val(num.substr(1))
+      }
+      if (event.keyCode === 69 || event.keyCode === 187 || event.keyCode === 107 || event.keyCode === 109 || event.keyCode === 189 || event.keyCode === 190 || event.keyCode === 188 || event.keyCode === 110) {
+        $(this).val(parseInt(num))
+      }
+    }).on('focusout', function() {
+      if ($(this).val() === '') {
+        $(this).val(1)
+      }
+    });
+
+mixin copyright
+  p.copyright(data-lang="Все права защищены.")
+  script.
+    // TODO Copyright auto update
+    function copyrightUpdate(el) {
+      let d = new Date(), copyright = $(el);
+      copyright.text(`© Galaxy IT, ${d.getFullYear()}. ` + copyright.attr('data-lang'));
+    }
+    copyrightUpdate('.copyright')
+
+mixin select(selectOptions, addClass)
+  .select-gl(class= addClass)
+    ._this
+      button(type="button" name="selected")._value.text_14
+        span= selectOptions[0]
+        +icon('multimedia', 'select-gl__drop')
+      ._list
+        button(type="button" name="selectBtn-0")._item.text_14.selected= selectOptions[0]
+        -for (var i = 1; i < selectOptions.length; i++)
+        button(type="button" name="selectBtn-" + i)._item.text_14= selectOptions[i]
+  script.
+    // TODO Select global init
+    $('.select-gl__value').on('click', function(event) {
+      event.preventDefault();
+      if ($(this).hasClass('select__active')) {
+        $(this).toggleClass('select__active').next().fadeToggle(100);
+      } else {
+        $('.select-gl__value').removeClass('select__active').next().fadeOut(100);
+        $(this).toggleClass('select__active').next().fadeToggle(100);
+      }
+    });
+    $('.select-gl__item').on('click', function(event) {
+      event.preventDefault();
+      $(this).parents('.select-gl').find('.selected').removeClass('selected');
+      $(this).addClass('selected');
+      $(this).parents('.select-gl').find('.select-gl__value span').text($(this).text());
+    }).on('dblclick', function(event) {
+      event.preventDefault();
+      $(this).parents('.select-gl').find('.selected').removeClass('selected');
+      $(this).addClass('selected');
+      $(this).parents('.select-gl').find('.select-gl__value span').text($(this).text());
+      $(this).parents('.select-gl').find('.select-gl__value').removeClass('select__active').next().fadeOut(100);
+    });
+    // TODO Select with icon items
+    $('.select-icon-js .select-gl__item').on('click', function() {
+      let icon = $(this).find('.icons-js').clone();
+      $(this).parents('.select-gl__this').children('.select-gl__value').find('.icons-js').remove();
+      $(this).parents('.select-gl__this').children('.select-gl__value').prepend(icon);
+    });
+
+mixin select-icon(selectOptions, icons, addClass)
+  .select-gl.select-gl--icon(class= addClass)
+    ._this
+      button(type="button" name="selected")._value.text_14
+        +icon(icons, 'select-gl__icon')
+        span= selectOptions[0]
+        +icon('multimedia', 'select-gl__drop')
+      ._list
+        button(type="button" name="selectBtn-0")._item.text_14.selected= selectOptions[0]
+        -for (var i = 1; i < selectOptions.length; i++)
+        button(type="button" name="selectBtn-" + i)._item.text_14= selectOptions[i]
+
+mixin select-icon-item(selectOptions, icons, addClass)
+  .select-gl.select-gl--icon(class= addClass)
+    ._this
+      button(type="button" name="selected")._value.text_14
+        .icons-js
+          +icon(icons[0], 'select-gl__icon')
+        span= selectOptions[0]
+        +icon('multimedia', 'select-gl__drop')
+      ._list
+        button(type="button" name="selectBtn-0")._item.text_14.selected
+          .icons-js
+            +icon(icons[0])
+          = selectOptions[0]
+        -for (var i = 1; i < selectOptions.length; i++)
+        button(type="button" name="selectBtn-" + i)._item.text_14
+          .icons-js
+            +icon(icons[i])
+          = selectOptions[i]
+
+mixin tabs
+  .tabs
+    ._nav
+      button(type="button" name="tab1")._btn.text_16.tabs--active tab1
+      button(type="button" name="tab2")._btn.text_16 tab2
+      button(type="button" name="tab3")._btn.text_16 tab3
+    ._main
+      ._box.tab1
+        h2 tab1
+      ._box.tab2
+        h2 tab2
+      ._box.tab3
+        h2 tab3
+  script.
+    // TODO Tabs
+    function tabsGlobal(on, target, tabsWrap, tabActive, boxWrap, boxItem, fade = 300) {
+      $(target).on(on, function(event) {
+        event.preventDefault();
+        if ($(this).hasClass(tabActive)) {
+          return false
+        }
+        $(tabsWrap).find('.' + tabActive).removeClass(tabActive);
+        $(this).addClass(tabActive);
+        $(boxItem).hide();
+        $(boxWrap).find('.' + $(this).attr('name')).stop(true).fadeIn(fade);
+      });
+    }
+    // TODO Tabs init
+    tabsGlobal('click', '.tabs__btn', '.tabs__nav', 'tabs--active', '.tabs__main', '.tabs__box');
+
+mixin accordion
+  .accordion
+    ul._list
+      li._item
+        button(type="button" name="box1")._btn.text_16
+          span box1
+        ._box
+          p._text.text_16
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, reiciendis!
+      li._item
+        button(type="button" name="box2")._btn.text_16
+          span box2
+        ._box
+          p._text.text_16
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, reiciendis!
+      li._item
+        button(type="button" name="box3")._btn.text_16
+          span box3
+        ._box
+          p._text.text_16
+            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, reiciendis!
+  script.
+    // TODO Accordion
+    $('.accordion__btn').on('click', function(event) {
+      event.preventDefault();
+      if ($(this).hasClass('accordion__active')) {
+        $(this).removeClass('accordion__active');
+        $(this).next().stop(true).slideUp(200);
+      } else {
+        $(this).parents('.accordion__list').find('.accordion__active').removeClass('accordion__active').next().stop(true).slideUp(200);
+        $(this).addClass('accordion__active');
+        $(this).next().stop(true).slideToggle(200);
+      }
+    });
+
+mixin ifDevices-script
+  script.
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    }
+
+mixin mask-script
+  script.
+    // TODO Mask input init
+    $('#input-phone').mask("(999) 999-99-99", {
+      autoclear: true
+    });
+
+mixin swiper-script
+  .swiper-container
+    .swiper-wrapper
+      .swipper-slide
+  script.
+    // TODO Swiper slider init
+    new Swiper('.swiper-container', {
+      speed: 1000,
+      loop: true,
+      centeredSlides: true,
+      centeredSlidesBounds: true,
+      slidesPerView: 1.12,
+      spaceBetween: 10,
+      simulateTouch: true,
+      updateOnWindowResize: true,
+      breakpoints: {
+        768: {
+          slidesPerView: 2
+        },
+        992: {
+          slidesPerView: 2.9
+        },
+        1200: {
+          slidesPerView: 'auto',
+          spaceBetween: 20
+        }
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.btn_next',
+        prevEl: '.btn_prev',
+      },
+      on: {
+        slideChange: function() {
+          // Some code
+        }
+      }
+    });
+
+mixin multiSwiper-script
+  script.
+    // Multi Swiper init on data-attr
+    $(".swiper-container").each(function() {
+      let $parent = $(this).parents('.swiper-container-parents');
+      let slidesDesktop = $parent.find('.swiper-wrapper').attr('data-slides-desktop');
+      let slidesMobile = $parent.find('.swiper-wrapper').attr('data-slides-mobile');
+      new Swiper(this, {
+        speed: 800,
+        slidesPerView: parseInt(slidesMobile),
+        loopedSlides: parseInt(slidesMobile),
+        spaceBetween: betweenFix(),
+        loop: true,
+        observer: true,
+        observeParents: true,
+        observeSlideChildren: true,
+        navigation: {
+          nextEl: $parent.find('.btn_next')[0],
+          prevEl: $parent.find('.btn_prev')[0]
+        },
+        pagination: {
+          el: $parent.find('.swiper-pagination')[0],
+          type: 'bullets',
+          clickable: true
+        },
+        breakpoints: {
+          576: {
+            slidesPerView: parseInt(slidesDesktop),
+            loopedSlides: parseInt(slidesDesktop),
+          }
+        }
+      });
+    });
+
+mixin stars(star)
+  .stars(data-stars= star)
+  script.
+    // TODO Rating init
+    let stars = document.querySelectorAll(".stars");
+    for (let i = 0; i < stars.length; i++) {
+      let star = parseInt(stars[i].getAttribute('data-stars'));
+      raterJs({
+        max: 5,
+        starSize: 16,
+        rating: star,
+        readOnly: true,
+        element: stars[i]
+      });
+    }
+
+mixin videojs-youtube
+  video.video-js.vjs-default-skin(
+    poster="web/img/general/poster.png"
+    controls=''
+    width='100%'
+    height='100%'
+    data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=BjaJzXRIx6Y"}] }')
+
+mixin videojs
+  video.video-js(controls='', preload='none', poster='web/img/content/video-black1.jpg', data-setup='{}')
+    source(src='http://vjs.zencdn.net/v/oceans.mp4', type='video/mp4')
+    source(src='http://vjs.zencdn.net/v/oceans.webm', type='video/webm')
+    source(src='http://vjs.zencdn.net/v/oceans.ogv', type='video/ogg')
+
+mixin iziModal-video
+  a(href="#"
+    data-video="https://player.vimeo.com/video/82903571"
+    data-title="Lorem Title ipsum"
+    data-izimodal-open="#modal-video").btn_video
+  script.
+    // TODO Modal video init
+    $('.btn_video').on('click', function(event) {
+      event.preventDefault()
+      let way = $(this).attr('data-video');
+      let title = $(this).attr('data-title');
+      $("#modal-video").iziModal({
+        headerColor: '#CC2323',
+        title: title,
+        iframe: true,
+        iframeURL: way,
+        fullscreen: true,
+        closeOnEscape: true,
+        closeButton: true,
+        overlayColor: 'rgba(0, 0, 0, 0.9)',
+        onClosed: function() {
+          $('#modal-video').iziModal('destroy');
+        },
+      });
+    });

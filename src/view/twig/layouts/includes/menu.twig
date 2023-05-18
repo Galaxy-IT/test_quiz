@@ -1,0 +1,14 @@
+{% set nav = json('navigation') %}
+
+<nav class="nav">
+  <ul class="nav__list">
+    {% for item in nav %}
+      {% set hrefWithoutExtname = replace(item.href, '.html', '') %}
+      <li class="nav__item">
+        <a href="{{ item.href }}" class="nav__link {{ currentPage == hrefWithoutExtname ? 'active' : '' }}">
+          {{ item.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

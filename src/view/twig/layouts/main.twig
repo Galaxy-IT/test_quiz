@@ -1,0 +1,56 @@
+{% import '../macro.twig' as macro %}
+{% block variables %}
+
+{% endblock %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      {{ title }}
+    </title>
+    <!--            [if IE]><meta http-equiv="X-UA-Compatible" content="IE = edge"/>
+    <![endif]            -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+    <meta content="true" name="HandheldFriendly" />
+    <meta content="width" name="MobileOptimized" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name="keywords" />
+    <meta name="description" />
+    <!-- inject:font preload -->
+    <!-- endinject -->
+    <meta name="it-rating" content="it-rat-fa9ef9f8c2095cc94c5d33de60ee9bb3" />
+
+    {% if tailwind %}
+      <link rel="preload" type="text/css" href="css/tailwind.min.css" as="style" />
+    {% endif %}
+    <link rel="stylesheet" href="css/app.min.css" as="style" />
+    <!--            [if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]            -->
+  </head>
+  <body class="{{ pageClass }}">
+    <div class="wrapper">
+      {% include './includes/header.twig' %}
+      <div class="content">
+        {% block content %}
+
+        {% endblock %}
+      </div>
+      {% include './includes/footer.twig' %}
+      {% block modals %}
+
+      {% endblock %}
+    </div>
+
+    {% if prod != true %}
+      {{ macro.menuDev() }}
+    {% endif %}
+
+    {% if webpack != true %}
+      <script src="js/app.min.js"></script>
+      <script src="js/main.min.js"></script>
+    {% endif %}
+  </body>
+</html>

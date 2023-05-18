@@ -1,0 +1,133 @@
+
+<!-- GLOBAL MENU ===================================================-->
+<!-- END GLOBAL MENU ===================================================-->
+<!-- Svg icon -->
+<!-- Image -->
+<!-- Breadcrumbs - "items" has to be array-->
+<form class="form" data-form-validation="data-form-validation">
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">First name</div>
+        <input class="form__input" type="text" name="user_firstname" data-required="data-required" data-validation-type="name"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Last name</div>
+        <input class="form__input" type="text" name="user_lastname" data-required="data-required" data-validation-type="name"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Min count </div>
+        <input class="form__input" type="number" min="10" max="100" name="user_minprice" data-required="data-required" data-validation-type="number"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Max count</div>
+        <input class="form__input" type="number" min="100" max="1000" name="user_maxprice" data-required="data-required" data-validation-type="number"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Choose a date of start(flatpickr)</div>
+        <input class="form__input" type="date" name="user_start" data-required="data-required" data-validation-type="empty" data-flatpickr="data-flatpickr"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Choose a date of end(no flatpickr)</div>
+        <input class="form__input" type="date" name="user_end" data-required="data-required" data-validation-type="empty"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Mail</div>
+        <input class="form__input" type="email" novalidate="novalidate" formnovalidate="formnovalidate" name="user_email" data-required="data-required" data-validation-type="email"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Phone(regular expression)</div>
+        <input class="form__input" type="tel" name="user_phone" minlength="5" maxlength="20" data-required="data-required" data-validation-type="tel"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Phone second(IMask)</div>
+        <input class="form__input" type="tel" name="user_secondphone" data-required="data-required" data-validation-type="empty" data-imask="data-imask"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Select your city</div>
+        <select class="form__input" name="user_city" data-required="data-required" data-validation-type="empty">
+          <option value="city_1">City 1</option>
+          <option value="city_2">City 2</option>
+          <option value="city_3">City 3</option>
+        </select><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field form__field--radio" data-validation-status="data-validation-status">
+        <div class="form__name">Choose tariff</div>
+        <div class="form__field-radio-group" data-required="data-required" data-validation-type="radio-group">
+          <input class="form__input" type="radio" name="user_tarif" value="tairf_1" data-validation-type="radio"/>
+          <input class="form__input" type="radio" name="user_tarif" value="tairf_2" data-validation-type="radio"/>
+          <input class="form__input" type="radio" name="user_tarif" value="tairf_3" data-validation-type="radio"/>
+          <input class="form__input" type="radio" name="user_tarif" value="tairf_4" data-validation-type="radio"/>
+          <input class="form__input" type="radio" name="user_tarif" value="tairf_5" data-validation-type="radio"/>
+        </div><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field form__field--radio" data-validation-status="data-validation-status">
+        <div class="form__name">Choose discount</div>
+        <div class="form__field-radio-group" data-required="data-required" data-validation-type="radio-group">
+          <input class="form__input" type="radio" name="user_discount" value="discount_1" data-validation-type="radio"/>
+          <input class="form__input" type="radio" name="user_discount" value="discount_2" data-validation-type="radio"/>
+          <input class="form__input" type="radio" name="user_discount" value="discount_3" data-validation-type="radio"/>
+          <input class="form__input" type="radio" name="user_discount" value="discount_4" data-validation-type="radio"/>
+          <input class="form__input" type="radio" name="user_discount" value="discount_5" data-validation-type="radio"/>
+        </div><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <div class="form__field" data-validation-status="data-validation-status">
+        <div class="form__name">Upload you photo</div>
+        <input class="form__input" type="file" name="user_userphoto" data-required="data-required" data-validation-type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"/><span class="form__invalid-message">Invalid message</span>
+      </div>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <label class="form__field form__field--checkbox" data-validation-status="data-validation-status">
+        <input class="form__input" type="checkbox" name="user_confirm" data-required="data-required" data-validation-type="checkbox"/>
+        <div class="form__name">Confirm privacy </div><span class="form__invalid-message">Invalid message</span>
+      </label>
+    </div>
+  </div>
+  <div class="form__row">
+    <div class="form__col">
+      <button class="form__submit" type="submit">Submit</button>
+    </div>
+  </div>
+</form>

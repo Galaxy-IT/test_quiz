@@ -1,0 +1,26 @@
+// README
+//@import any css files without .css extension
+//@import "node_modules/bootstrap/dist/css/bootstrap-grid";
+//@import "node_modules/bootstrap/dist/css/bootstrap-reboot";
+
+@import 'node_modules/bootstrap/scss/bootstrap-grid';
+@import 'node_modules/bootstrap/scss/bootstrap-reboot';
+
+// BOOTSTRAP MIXINS
+@import 'node_modules/bootstrap/scss/_functions.scss';
+@import 'node_modules/bootstrap/scss/_variables.scss';
+@import 'node_modules/bootstrap/scss/_mixins.scss';
+
+// Swiper
+// @import 'node_modules/swiper/swiper';
+// @import 'node_modules/swiper/components/pagination/pagination';
+// @import 'node_modules/swiper/components/navigation/navigation';
+
+// Simplebar
+// @import 'node_modules/simplebar/dist/simplebar.min';
+
+// Flatpickr
+@import 'node_modules/flatpickr/dist/flatpickr.min';
+
+// AOS
+// @import 'node_modules/aos/dist/aos'

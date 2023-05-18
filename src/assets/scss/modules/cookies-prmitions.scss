@@ -1,0 +1,46 @@
+.cookies-permitions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+
+    .cookies-permitions__dialog {
+      transform: translateY(0);
+    }
+  }
+
+  &__dialog {
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    width: fit-content;
+    background-color: #fff;
+    transform: translateY(calc(100% + 50px));
+    transition: all 0.5s ease;
+
+    &-body {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 10px 30px;
+      border: 1px solid #000;
+    }
+  }
+}

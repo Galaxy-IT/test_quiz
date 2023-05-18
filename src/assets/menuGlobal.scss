@@ -1,0 +1,93 @@
+.menu_wrap {
+  position: fixed;
+  flex-direction: column;
+  z-index: 1000;
+  display: flex;
+  width: 200px;
+  transition: all 0.3s ease;
+  transform: translateX(-202px);
+  background: #fff;
+  border-radius: 6px;
+  top: 10px;
+  box-shadow: 0 0 3px 3px rgba(54, 128, 251, 0.16);
+}
+
+.menuGlobal {
+  width: 100%;
+  max-height: 80vh;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.menu_click {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 10px);
+  border-left: 2px solid transparent;
+  height: 30px;
+}
+
+.menu_click button {
+  padding: 3px 5px;
+}
+
+.menuGlobal__item {
+  margin-bottom: 17px;
+}
+
+.menuGlobal__item:last-child {
+  margin-bottom: 0;
+}
+
+.menuGlobal__link {
+  color: #707070;
+  font-size: 14px;
+  font-weight: 400;
+  transition: .3s;
+}
+
+.menuGlobal__link.active,
+.menuGlobal__link:hover {
+  color: #3680FB;
+}
+
+.menu_click, .menu_click button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu_wrap-title {
+  padding: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #3680FB;
+  border-bottom: 1px dashed #EAF0FA;
+}
+
+.menu_click button {
+  font-weight: 700;
+  line-height: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: #000;
+  border: 1px solid #BBCDEE;
+  outline: unset;
+  background: #F8FAFE;
+  border-radius: 6px;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.menu_click button .icon-drop {
+  width: 12px;
+  height: 7px;
+  fill: #BBCDEE;
+}
+
+.menu_wrap_active {
+  transition: all .3s ease;
+  -webkit-transform: translateX(2%);
+  transform: translateX(2%);
+}
