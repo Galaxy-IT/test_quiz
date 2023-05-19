@@ -13,16 +13,17 @@
       <div class="stepper__body">
         <div class="stepper__steps">
           {% include 'stepper/intro.twig' %}
-          {% include 'stepper/step-1.twig' %}
-          {% include 'stepper/step-2.twig' %}
-          {% include 'stepper/step-3.twig' %}
-          {% include 'stepper/step-4.twig' %}
-          {% include 'stepper/step-5.twig' %}
-          {% include 'stepper/step-6.twig' %}
-          {% include 'stepper/step-7.twig' %}
-          {% include 'stepper/step-4.twig' %}
-          {% include 'stepper/step-5.twig' %}
-          {% include 'stepper/step-6.twig' %}
+          {% include 'stepper/step-radios.twig' %}
+          {% include 'stepper/step-checkboxes-icons.twig' %}
+          {% include 'stepper/step-checkboxes.twig' %}
+          {% include 'stepper/step-canvas-porgress.twig' with {canvasId: 'canvas_1'} %}
+          {% include 'stepper/step-card-slider.twig' %}
+          {% include 'stepper/step-checkboxes.twig' %}
+          {% include 'stepper/step-checkboxes-icons.twig' %}
+          {% include 'stepper/step-canvas-porgress.twig' with {canvasId: 'canvas_2'} %}
+          {% include 'stepper/step-card-slider.twig' %}
+          {% include 'stepper/step-checkboxes.twig' %}
+          {% include 'stepper/step-checkboxes-icons.twig' %}
         </div>
       </div>
     </div>

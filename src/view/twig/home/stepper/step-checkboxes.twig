@@ -18,8 +18,10 @@
       {% for condition in conditions %}
         <li>
           <label class="btn secondary-btn step__label">
-            <input class="checkbox {{ condition == 'None' ? 'reset-checkboxes' : '' }}" type="checkbox"
-                   name="conditions_diseases" value="{{ condition }}">
+            <input
+              class="checkbox {{ condition == 'None' ? 'reset-checkboxes' : '' }}"
+              type="checkbox"
+              name="conditions_diseases" value="{{ condition }}">
             <span>{{ condition }}</span>
             <span class="bg"></span>
           </label>

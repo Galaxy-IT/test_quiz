@@ -1,5 +1,6 @@
 import { fadeIn, fadeOut } from '../utils/fade';
 import { slideDown, slideUp } from '../utils/slideIn';
+import { canvasProgress } from './canvas-progress';
 
 class CardSlider {
   constructor($container, stepper) {
@@ -216,8 +217,20 @@ export class Stepper {
         fadeIn(
           this.state.$currentStep,
           this.duration,
-          () => {
+          async () => {
             this.state.$currentStep.classList.add('active');
+            const canvas = this.state.$currentStep.querySelector('.step__canvas');
+
+            canvas &&
+              (await canvasProgress(canvas.id, () => {
+                const parent = canvas.closest('.step__canvas-wrap');
+                parent.classList.add('complete');
+
+                setTimeout(() => {
+                  this.changeStep();
+                }, this.duration * 2);
+              }));
+
             this.locked = false;
           },
           'flex'

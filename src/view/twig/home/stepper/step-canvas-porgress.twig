@@ -1,0 +1,21 @@
+{% set conditions = [
+  'pasta',
+  'potato',
+  'rice',
+  'i hate it all',
+] %}
+
+<div class="step">
+  <div class="step__content border-0">
+    <div class="step__pretitle text-center">We’re now generating <br> first part of your book</div>
+    <div class="step__canvas-wrap">
+      <canvas id="{{ canvasId }}" width="200" height="200" class="step__canvas"></canvas>
+      <div class="step__img-loading">
+        {{ macro.img('content/generating-2', 'png', 'step__img-loading') }}
+      </div>
+      <div class="step__img-complete">
+        {{ macro.img('content/complete', 'png', 'step__img-complete') }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,10 @@
   padding: px(50) px(30);
   position: relative;
 
+  .text-center {
+    text-align: center;
+  }
+
   .hide {
     opacity: 0;
     pointer-events: none;
@@ -15,7 +19,7 @@
 
   &__progress {
     height: px(5);
-    width: 50%;
+    width: 0%;
     position: absolute;
     top: 0;
     left: 0;
