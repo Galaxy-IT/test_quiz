@@ -1,8 +1,13 @@
 .step {
-  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  &.invalid {
+    .step__content {
+      animation: shake .4s ease;
+    }
+  }
 
   &__pretitle {
     margin-bottom: px(20);
@@ -32,27 +37,6 @@
     color: var(--baseBlack);
   }
 
-  &__scroll-wrapper {
-    overflow-y: auto;
-    max-height: px(200);
-    padding-right: px(8);
-
-    scrollbar-gutter: stable;
-    &::-webkit-scrollbar {
-      width: px(4);
-      height: px(4);
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--baseRed);
-      border-radius: px(4);
-    }
-  }
-
   &__buttons,
   &__content {
     padding: px(20);
@@ -72,6 +56,11 @@
 
     input[type='checkbox']:checked ~ .bg,
     input[type='radio']:checked ~ .bg {
+      opacity: 1;
+    }
+
+    input[type='checkbox']:checked ~ .bg-primary,
+    input[type='radio']:checked ~ .bg-primary {
       left: 50%;
       transform: translate(-50%, -50%) skewX(-15deg);
     }
@@ -81,5 +70,40 @@
     flex: 1 0 auto;
     padding-block: px(40);
     border-bottom: px(1) solid rgba($baseBlack, .5);
+    overflow-y: auto;
+    max-height: px(390);
+    padding-right: px(8);
+
+    &::-webkit-scrollbar {
+      width: px(4);
+      height: px(4);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--baseRed);
+      border-radius: px(4);
+    }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(px(5));
+  }
+  25% {
+    transform: translateX(px(-5));
+  }
+  50% {
+    transform: translateX(px(5));
+  }
+  75% {
+    transform: translateX(px(-5));
+  }
+  100% {
+    transform: translateX(px(5));
   }
 }

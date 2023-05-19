@@ -1,0 +1,56 @@
+{% set images = [
+  'beef-foodtinder',
+  'pork-foodtinder',
+  'turkey-foodtinder',
+  'chicken-foodtinder'
+] %}
+
+{% set names = [
+  'beef',
+  'pork',
+  'turkey',
+  'chicken'
+] %}
+
+<div class="step">
+  <div class="card-slider">
+    <div class="card-slider__items-hidden"></div>
+
+    <div class="card-slider__items">
+      {% for index, image in images %}
+        {% set imageHref = join(['content/', image]) %}
+
+        <div class="card-slider__item {{ index == 0 ? 'active' : '' }}">
+          <input type="hidden" name="{{ image }}" value="" class="card-slider-item-input">
+          {{ macro.img(imageHref, 'jpg', 'card-slider__item') }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="card-slider__items-names">
+      {% for index, name in names %}
+        <div class="card-slider__items-name {{ index == 0 ? 'active' : '' }}">
+          {{ name }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="card-slider__buttons">
+      <div class="card-slider__buttons-row">
+        <div class="card-slider__buttons-col">
+          <button class="btn secondary-btn card-slider__btn left" data-value="hate" type="button">
+            <span>Hate</span>
+          </button>
+        </div>
+        <div class="card-slider__buttons-col">
+          <button class="btn secondary-btn card-slider__btn center" data-value="neutral" type="button">
+            <span>Neutral</span>
+          </button>
+        </div>
+        <div class="card-slider__buttons-col">
+          <button class="btn secondary-btn card-slider__btn right" data-value="love" type="button">
+            <span>Love</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

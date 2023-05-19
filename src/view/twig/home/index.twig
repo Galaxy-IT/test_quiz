@@ -2,20 +2,28 @@
 {% block variables %}
   {% set title = 'Index page' %}
   {% set pageClass = 'index-page' %}
-  {#  {% set steps = [1,2] %} #}
 {% endblock %}
 
 {% block content %}
   <form action="#" method="POST" class="stepper">
-    {% include 'stepper/head.twig' %}
-    <div class="stepper__body">
-      <div class="stepper__steps">
-        {% include 'stepper/intro.twig' %}
-        {% include 'stepper/step-1.twig' %}
-        {% include 'stepper/step-2.twig' %}
-        {% include 'stepper/step-3.twig' %}
-        {% include 'stepper/step-4.twig' %}
-        {% include 'stepper/step-5.twig' %}
+    <div class="stepper__progress"></div>
+    <div class="stepper__background"></div>
+    <div class="stepper__container">
+      {% include 'stepper/head.twig' %}
+      <div class="stepper__body">
+        <div class="stepper__steps">
+          {% include 'stepper/intro.twig' %}
+          {% include 'stepper/step-1.twig' %}
+          {% include 'stepper/step-2.twig' %}
+          {% include 'stepper/step-3.twig' %}
+          {% include 'stepper/step-4.twig' %}
+          {% include 'stepper/step-5.twig' %}
+          {% include 'stepper/step-6.twig' %}
+          {% include 'stepper/step-7.twig' %}
+          {% include 'stepper/step-4.twig' %}
+          {% include 'stepper/step-5.twig' %}
+          {% include 'stepper/step-6.twig' %}
+        </div>
       </div>
     </div>
   </form>

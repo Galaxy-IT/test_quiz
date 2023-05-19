@@ -1,16 +1,51 @@
 .stepper {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-width: px(500);
-  min-height: px(500);
-  border-radius: 8px;
-  background-color: var(--baseWhite);
-  box-shadow: 0 0 px(15) rgba($baseBlack, .1);
+  height: 100vh;
+  padding: px(50) px(30);
+  position: relative;
 
   .hide {
     opacity: 0;
     pointer-events: none;
+  }
+
+  &__progress {
+    height: px(5);
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background-color: var(--baseRed);
+    transition: all .3s ease;
+  }
+
+  &__background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: url("../img/content/groceries.jpg");
+    transition: all .3s ease;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: px(500);
+    min-height: px(500);
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    background-color: var(--baseWhite);
+    box-shadow: 0 0 px(15) rgba($baseBlack, .1);
   }
 
   &__head {
@@ -33,15 +68,17 @@
   &__prev-step-btn {
     transition: all .3s ease;
 
-    &:focus {
-      outline: 0;
-      box-shadow: 0 0 0 px(5) rgba($baseBlue, .4);
-    }
-
-    &:hover {
+    &:hover,
+    &:active {
       .icon-arrow-left {
         fill: var(--baseRed);
       }
+    }
+
+    &.disabled,
+    &:disabled {
+      opacity: .6;
+      pointer-events: none;
     }
 
     .icon-arrow-left {
@@ -55,9 +92,12 @@
 
   &__body {
     flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
   }
 
   &__steps {
+    flex: 1 0 auto;
     display: flex;
     height: 100%;
   }

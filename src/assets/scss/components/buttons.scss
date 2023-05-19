@@ -9,17 +9,6 @@
   border-radius: 30px;
   transition: all .3s ease;
 
-  &:focus {
-    outline: 0;
-    box-shadow: 0 0 0 px(5) rgba($baseBlue, .4);
-  }
-
-  &:hover,
-  &:active {
-    outline: 0 !important;
-    box-shadow: 0 0 0 px(5) rgba($baseBlue, 0) !important;
-  }
-
   &.disabled,
   &:disabled {
     opacity: .6;
@@ -49,6 +38,7 @@
     transform: translate(-100%, -50%) skewX(-15deg);
     background: var(--baseRed);
     transition: all .5s ease;
+    pointer-events: none;
   }
 
   &:hover {
@@ -75,16 +65,16 @@
   &:after {
     content: '';
     display: block;
-    width: 105%;
-    height: 105%;
+    width: 100%;
+    height: 100%;
     position: absolute;
-    left: -5%;
-    top: 50%;
+    left: 0;
+    top: 0;
     z-index: 1;
-    transform: translate(-100%, -50%) skewX(-15deg);
-    box-shadow: 0 px(4) px(7) px(-2) rgba($baseLightBlue, .6);
     background: var(--baseLightBlue);
     transition: all .5s ease;
+    opacity: 0;
+    pointer-events: none;
   }
 
   &:hover {
@@ -92,8 +82,7 @@
 
     .bg,
     &:after {
-      left: 50%;
-      transform: translate(-50%, -50%) skewX(-15deg);
+      opacity: 1;
     }
   }
 }
