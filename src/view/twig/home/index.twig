@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <form action="#" method="POST" class="stepper">
+  <form novalidate action="#" method="POST" class="stepper">
     <div class="stepper__progress"></div>
     <div class="stepper__background"></div>
     <div class="stepper__container">
@@ -24,6 +24,7 @@
           {% include 'stepper/step-card-slider.twig' %}
           {% include 'stepper/step-checkboxes.twig' %}
           {% include 'stepper/step-checkboxes-icons.twig' %}
+          {% include 'stepper/last-step.twig' %}
         </div>
       </div>
     </div>

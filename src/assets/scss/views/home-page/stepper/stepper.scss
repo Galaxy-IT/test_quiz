@@ -8,6 +8,10 @@
   padding: px(50) px(30);
   position: relative;
 
+  .form {
+    overflow: hidden;
+  }
+
   .text-center {
     text-align: center;
   }
@@ -50,6 +54,7 @@
     z-index: 2;
     background-color: var(--baseWhite);
     box-shadow: 0 0 px(15) rgba($baseBlack, .1);
+    transition: opacity .5s ease;
   }
 
   &__head {

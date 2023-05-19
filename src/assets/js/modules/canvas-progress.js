@@ -32,7 +32,7 @@ const canvasProgress = (id, callback) => {
 
       if (deegres >= result) {
         clearInterval(acrInterval);
-        callback && callback();
+        callback && callback(canvas);
       }
     }, fps);
   }

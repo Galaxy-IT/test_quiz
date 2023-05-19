@@ -99,6 +99,7 @@ export class Stepper {
     this.locked = false;
     this.checkboxes = this.$container.querySelectorAll('.checkbox');
     this.cardSliders = this.$container.querySelectorAll('.card-slider');
+    this.canvasCallbackTimersId = [];
     this.counter = {
       $container: this.$container.querySelector('.counter'),
       $current: this.$container.querySelector('.counter__current'),
@@ -151,6 +152,20 @@ export class Stepper {
       );
 
     this.cardSliders.length && this.cardSliders.forEach(($cardSlider) => new CardSlider($cardSlider, this));
+
+    this.$section.addEventListener('submit', (event) => {
+      const $emailInput = this.$section.querySelector('.form__input');
+      const regExp =
+        /([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,11})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,11})?)$/i;
+
+      if (!regExp.test($emailInput.value)) {
+        event.preventDefault();
+        const $inputParent = $emailInput.closest('.form__field');
+
+        $inputParent.classList.add('invalid');
+        $inputParent.oninput = () => $inputParent.classList.remove('invalid');
+      }
+    });
   }
 
   start = () => {
@@ -193,11 +208,47 @@ export class Stepper {
     this.counter.$current.innerHTML = this.state.currentStepCount;
   }
 
+  canvasCallback(canvas) {
+    // const $parentStep = canvas.closest('.step');
+    const $parentWrap = canvas.closest('.step__canvas-wrap');
+    $parentWrap.classList.add('complete');
+
+    this.canvasCallbackTimersId = setTimeout(() => {
+      this.changeStep();
+
+      // const parentStepIndex = [...this.steps].findIndex(($step) => $parentStep === $step);
+      // this.steps[parentStepIndex].remove();
+      //
+      // this.counter.$total.innerHTML = this.steps.length - 1;
+    }, this.duration * 2);
+  }
+
+  async fadeInCallback() {
+    this.$container.classList.remove('hide');
+    this.state.$currentStep.classList.add('active');
+    const canvas = this.state.$currentStep.querySelector('.step__canvas');
+
+    canvas && (await canvasProgress(canvas.id, (canvas) => this.canvasCallback(canvas)));
+
+    this.locked = false;
+  }
+
+  fadeOutCallback(direction) {
+    this.state.$currentStep.classList.remove('active');
+
+    direction === 'next' && this.incStep();
+    direction === 'prev' && this.decStep();
+    this.$progress.style.width = `${(this.state.currentStepCount / this.steps.length) * 100}%`;
+
+    fadeIn(this.state.$currentStep, this.duration, () => this.fadeInCallback(), 'flex');
+  }
+
   changeStep(direction = 'next') {
     if (this.locked) return;
     if (direction === 'next' && this.state.currentStepCount + 1 >= this.steps.length) return;
     if (direction === 'prev' && this.state.currentStepCount <= 0) return;
     this.locked = true;
+    clearTimeout(this.canvasCallbackTimersId);
 
     let isValid = true;
 
@@ -208,34 +259,8 @@ export class Stepper {
     });
 
     if (isValid) {
-      fadeOut(this.state.$currentStep, this.duration, () => {
-        direction === 'next' && this.incStep();
-        direction === 'prev' && this.decStep();
-        this.$progress.style.width = `${(this.state.currentStepCount / this.steps.length) * 100}%`;
-        this.state.$currentStep.classList.remove('active');
-
-        fadeIn(
-          this.state.$currentStep,
-          this.duration,
-          async () => {
-            this.state.$currentStep.classList.add('active');
-            const canvas = this.state.$currentStep.querySelector('.step__canvas');
-
-            canvas &&
-              (await canvasProgress(canvas.id, () => {
-                const parent = canvas.closest('.step__canvas-wrap');
-                parent.classList.add('complete');
-
-                setTimeout(() => {
-                  this.changeStep();
-                }, this.duration * 2);
-              }));
-
-            this.locked = false;
-          },
-          'flex'
-        );
-      });
+      this.$container.classList.add('hide');
+      fadeOut(this.state.$currentStep, this.duration, () => this.fadeOutCallback(direction));
     } else {
       this.state.$currentStep.classList.add('invalid');
 
