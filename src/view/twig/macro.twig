@@ -65,17 +65,3 @@
   </picture>
 {% endmacro %}
 {# Images end #}
-
-{# Breadcrumbs #}
-{% macro breadcrumbs(items, customClass) %}
-  <div class="breadcrumbs {{ customClass }}">
-    <ul class="breadcrumbs__list">
-      {% for item in items %}
-        <li class="breadcrumbs__item">
-          <a href="{{ item.href }}" class="breadcrumbs__link">{{ item.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endmacro %}
-{# Breadcrumbs end #}

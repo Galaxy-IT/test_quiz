@@ -145,6 +145,8 @@
   }
 
   &__btn {
+    cursor: pointer;
+
     &.left {
       border: px(1) solid var(--baseRed);
       color: var(--baseRed);

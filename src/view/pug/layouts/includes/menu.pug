@@ -1,8 +1,0 @@
-include ../../mixins
-
-- var url = json('navigation')
-
-ul.nav
-  each item in url
-    li.nav__item
-      a(href=item.href).nav__link= item.title

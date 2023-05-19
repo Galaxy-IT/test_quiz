@@ -1,5 +1,4 @@
 import { fadeIn, fadeOut } from '../utils/fade';
-import { slideDown, slideUp } from '../utils/slideIn';
 import { canvasProgress } from './canvas-progress';
 
 class CardSlider {
@@ -154,12 +153,13 @@ export class Stepper {
     this.cardSliders.length && this.cardSliders.forEach(($cardSlider) => new CardSlider($cardSlider, this));
 
     this.$section.addEventListener('submit', (event) => {
+      event.preventDefault();
+
       const $emailInput = this.$section.querySelector('.form__input');
       const regExp =
         /([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,11})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,11})?)$/i;
 
       if (!regExp.test($emailInput.value)) {
-        event.preventDefault();
         const $inputParent = $emailInput.closest('.form__field');
 
         $inputParent.classList.add('invalid');
