@@ -1,0 +1,7 @@
+.counter {
+  color: rgba($baseBlack, .75);
+
+  &__current {
+    color: var(--baseRed);
+  }
+}

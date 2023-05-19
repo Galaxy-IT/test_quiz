@@ -1,14 +1,17 @@
 // LIBS
 @import "libs";
 
+// Custom mixins
+@import 'vars/index';
+
 // Utils
 @import "utils/mixins";
 
 // Fonts
 @import "fonts";
 
-// Custom mixins
-@import 'vars/index';
+// Root
+@import "root";
 
 // Settings
 @import "settings";

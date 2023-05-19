@@ -1,0 +1,36 @@
+{% set conditions = [
+  'Gastroesophageal Reflux Disease',
+  'Irritable Bowel Syndrome',
+  'Cholelithiasis (Gallstones)',
+  'Celiac Disease',
+  'High Cholesterol (> 6, 5)',
+  'Gastritis',
+  'Bloating',
+  'Anemia',
+  'Diabetes',
+  'None',
+] %}
+
+<div class="step">
+  <div class="step__content">
+    <div class="step__title">Select any of the following health conditions/diseases you have/have had.</div>
+    <div class="step__scroll-wrapper">
+      <ul>
+        {% for condition in conditions %}
+          <li>
+            <label class="btn secondary-btn step__label">
+              <input type="checkbox" name="conditions_diseases" value="{{ condition }}">
+              <span>{{ condition }}</span>
+              <span class="bg"></span>
+            </label>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="step__buttons">
+    <button class="btn primary-btn next-step" type="button">
+      <span>Next</span>
+    </button>
+  </div>
+</div>

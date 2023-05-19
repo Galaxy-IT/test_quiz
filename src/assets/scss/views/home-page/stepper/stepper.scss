@@ -1,0 +1,77 @@
+.stepper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: px(500);
+  min-height: px(500);
+  border-radius: 8px;
+  background-color: var(--baseWhite);
+  box-shadow: 0 0 px(15) rgba($baseBlack, .1);
+
+  .hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__head {
+    padding: px(10) px(20);
+    border-bottom: px(1) solid rgba($baseBlack, .5);
+  }
+
+  &__head-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% + px(20));
+    margin-inline: px(-10);
+  }
+
+  &__head-col {
+    padding-inline: px(10);
+  }
+
+  &__prev-step-btn {
+    transition: all .3s ease;
+
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0 px(5) rgba($baseBlue, .4);
+    }
+
+    &:hover {
+      .icon-arrow-left {
+        fill: var(--baseRed);
+      }
+    }
+
+    .icon-arrow-left {
+      width: px(18);
+      min-width: px(18);
+      height: px(15);
+      fill: rgba($baseBlack, .5);
+      transition: all .3s ease;
+    }
+  }
+
+  &__body {
+    flex: 1 0 auto;
+  }
+
+  &__steps {
+    display: flex;
+    height: 100%;
+  }
+
+  .counter {
+    transition: all .3s ease;
+  }
+
+  .step {
+    flex: 0 0 100%;
+    width: 100%;
+
+    &:not(.active) {
+      display: none;
+    }
+  }
+}
